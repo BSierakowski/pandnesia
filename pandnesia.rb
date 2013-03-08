@@ -4,8 +4,8 @@ require 'capybara/dsl'
 
 include Capybara::DSL
 
-$your_pandora_email = "YOUR EMAIL HERE"
-$your_pandora_password = "YOUR PASSWORD HERE"
+$your_pandora_email = "YOUR EMAIL"
+$your_pandora_password = "YOUR PASSWORD"
 
 Capybara.run_server = false
 Capybara.default_wait_time = 5
@@ -20,10 +20,10 @@ describe 'deleting ery-thang' do
     visit("http://www.pandora.com/account/sign-in")
     fill_in('email', :with => $your_pandora_email)
     fill_in('password', :with => $your_pandora_password)
-    click_on("Sign in")
+    find('.loginButton').click
     sleep 2
     while page.has_css?("div.optionsItem")
-      find('div.optionsItem').click
+      first('div.optionsItem').click
       click_on("Delete this station")
       sleep 2
     end
