@@ -15,14 +15,14 @@ end
 
 Capybara.current_driver = :selenium_chrome
 
-describe 'deleting ery-thang' do
-  it "deletes all pandora stations" do
+describe 'deleting 20 stations' do
+  it "deletes top 20 pandora stations" do
     visit("http://www.pandora.com/account/sign-in")
     fill_in('email', :with => $your_pandora_email)
     fill_in('password', :with => $your_pandora_password)
     find('.loginButton').click
     sleep 2
-    while page.has_css?("div.optionsItem")
+    20.times do 
       first('div.optionsItem').click
       click_on("Delete this station")
       sleep 2
